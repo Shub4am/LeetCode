@@ -1,3 +1,3 @@
 # LeetCode
 
-## Leetcode Solutions  in Java Programming Language
+## Leetcode Java Solutions
