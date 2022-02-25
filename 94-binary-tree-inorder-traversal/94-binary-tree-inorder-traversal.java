@@ -14,22 +14,14 @@
  * }
  */
 class Solution {
+    List<Integer> binaryTree = new ArrayList<>();
     public List<Integer> inorderTraversal(TreeNode root) {
-    List<Integer> arrayList = new ArrayList<Integer>();
-
-    Stack<TreeNode> stack = new Stack<TreeNode>();
-    TreeNode curr = root;
-
-    while(curr!=null || !stack.empty()){
-        while(curr!=null){
-            stack.add(curr);
-            curr = curr.left;
+        if(root != null) {
+            
+            inorderTraversal(root.left);
+            binaryTree.add(root.val);
+            inorderTraversal(root.right);
         }
-        curr = stack.pop();
-        arrayList.add(curr.val);
-        curr = curr.right;
-    }
-
-    return arrayList;
-    }
+       return binaryTree; 
+    } 
 }
