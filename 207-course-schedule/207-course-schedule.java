@@ -1,34 +1,38 @@
-public class Solution {
+class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        boolean[] canFinish = new boolean[numCourses]; 
-        boolean[] waitingList = new boolean[numCourses];
-        
-        for (int i = 0; i < numCourses; i++) {
-            if (!canFinishThisCourse(i,prerequisites,waitingList,canFinish)) { 
-                return false; 
+        List<List<Integer>> adjList = new ArrayList<>();
+        for (int i=0; i<numCourses; i++) {
+            adjList.add(new ArrayList<>());
+        }
+        for (int i=0; i<prerequisites.length; i++) {
+            adjList.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }
+        boolean [] visited = new boolean[numCourses];
+        boolean [] recStack = new boolean[numCourses];
+        for (int i=0; i<numCourses; i++) {
+            if (isCyclic(i, visited, recStack, adjList)) {
+                return false;
             }
         }
         return true;
     }
     
-    public boolean canFinishThisCourse(int course, int[][] prerequisites, boolean[] waitingList, boolean[] canFinish) {
-        if (canFinish[course]) { 
-            return true; 
+    private boolean isCyclic(int v, boolean [] visited, boolean [] recStack, List<List<Integer>> adjList) {
+        if (recStack[v]) {
+            return true;
         }
-        if (waitingList[course]) {
-            return false; 
+        if (visited[v]) {
+            return false;
         }
-        
-        waitingList[course] = true;
-        for (int[] pair : prerequisites) {
-            if (pair[0] == course) {
-                if (!canFinishThisCourse(pair[1],prerequisites,waitingList,canFinish)) {
-                    return false; 
-                }
+        recStack[v] = true;
+        visited[v] = true;
+        List<Integer> courses = adjList.get(v);
+        for (Integer course: courses) {
+            if (isCyclic(course, visited, recStack, adjList)) {
+                return true;
             }
         }
-        waitingList[course] = false;
-        canFinish[course] = true;
-        return true;
+        recStack[v] = false;
+        return false;
     }
 }
