@@ -14,28 +14,26 @@
  * }
  */
 class BSTIterator {
-    private Stack<TreeNode> stack = new Stack<TreeNode>();
+    Iterator<Integer> iterator;
     public BSTIterator(TreeNode root) {
-        pushAll(root);
+        List<Integer> inorder = new ArrayList<>();
+        inOrder(root, inorder);
+        iterator = inorder.iterator();
     }
-    
-    public int next() {
-        TreeNode temp = stack.pop();
-        pushAll(temp.right);
-        return temp.val;
-        
+    private void inOrder(TreeNode node, List<Integer> inOrder) {
+        if(node != null) {
+            inOrder(node.left, inOrder);
+            inOrder.add(node.val);
+            inOrder(node.right, inOrder);
+        }
     }
-    
     public boolean hasNext() {
-        return !stack.isEmpty();
-        
+        return iterator.hasNext();
     }
-    private void pushAll(TreeNode treeNode){
-        for(; treeNode != null; stack.push(treeNode), treeNode = treeNode.left);
+    public int next() {
+        return iterator.next();
     }
 }
-
-
 /**
  * Your BSTIterator object will be instantiated and called as such:
  * BSTIterator obj = new BSTIterator(root);
