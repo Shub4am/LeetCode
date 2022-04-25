@@ -18,7 +18,7 @@ class PeekingIterator implements Iterator<Integer> {
 	// Override them if needed.
 	@Override
 	public Integer next() {
-	    Integer data = res.get(0);
+	    int data = res.get(0);
         res.remove(0);
         return data;
 	}
