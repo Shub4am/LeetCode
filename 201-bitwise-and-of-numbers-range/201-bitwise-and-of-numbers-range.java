@@ -1,4 +1,4 @@
-public class Solution {
+class Solution {
     public int rangeBitwiseAnd(int left, int right) {
         if(left == 0){
             return 0;
