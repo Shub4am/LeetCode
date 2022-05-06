@@ -8,6 +8,6 @@ class Solution {
                 count[c] = 0;
             }
         }
-        return (length == s.length()) ? length : length+1;
+        return (length == s.length()) ? length : length + 1;
     }
 }
