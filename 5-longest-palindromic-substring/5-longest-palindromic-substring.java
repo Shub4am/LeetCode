@@ -13,7 +13,6 @@ class Solution {
         }
         return s.substring(start, end + 1);
     }
-    
     public int expandAroundCenter(String str, int left, int right) {
         while(left >= 0 && right< str.length() && str.charAt(left) == str.charAt(right)) {
             left--;
