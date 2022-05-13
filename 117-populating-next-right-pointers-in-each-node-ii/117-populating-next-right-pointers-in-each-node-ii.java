@@ -20,7 +20,6 @@ class Node {
     }
 };
 */
-
 class Solution {
     public Node connect(Node root) {
         Node mostLeft = root;
