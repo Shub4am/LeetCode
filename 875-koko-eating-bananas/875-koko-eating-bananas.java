@@ -10,8 +10,3 @@ class Solution {
         return l;
     }
 }
-// if (total > h)
-            //     l = m + 1;
-            // else
-            //     r = m;
-            //condition ? trueOutput : falseOutput
